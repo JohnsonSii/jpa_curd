@@ -43,10 +43,8 @@ public class UserService {
     }
 
 
-//    public Page<User> findPage(Integer pageNum, Integer pageSize, String name) {
-//        // 构建分页查询条件
-//        Sort sort = new Sort(Sort.Direction.DESC, "create_time");
-//        Pageable pageable = PageRequest.of(pageNum - 1, pageSize, sort);
-//        return userDao.findAll(pageable);
-//    }
+    public Page<User> findPage(Integer pageNum, Integer pageSize, String name) {
+        PageRequest request= PageRequest.of(pageNum - 1, pageSize, Sort.by(Sort.Direction.DESC, "create_time"));
+        return userDao.findByNameLike(name, request);
+    }
 }
